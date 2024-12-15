@@ -24,21 +24,3 @@ jobs:
         with:
           push: true
           tags: 2424833f/gitops:latest  # Cambia este tag según tu imagen de Docker
-
-  sync_with_argocd:
-    name: Sync with ArgoCD
-    runs-on: ubuntu-latest
-    needs: push_to_registry  # Este paso depende de que el paso anterior haya sido exitoso
-    steps:
-      - name: Install ArgoCD CLI
-        run: |
-          curl -sSL https://github.com/argoproj/argo-cd/releases/download/v2.9.0/argocd-linux-amd64 -o /usr/local/bin/argocd
-          chmod +x /usr/local/bin/argocd
-
-      - name: Login to ArgoCD
-        run: |
-          argocd login 127.0.0.1:55514 --username admin --password ${{ secrets.ARGOCD_PASSWORD }} --insecure
-
-      - name: Sync Application
-        run: |
-          argocd app sync my-app  # Asegúrate de que 'my-app' sea el nombre de tu aplicación en ArgoCD
