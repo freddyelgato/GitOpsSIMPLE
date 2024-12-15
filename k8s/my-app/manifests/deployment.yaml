@@ -17,4 +17,16 @@ spec:
         - name: my-app
           image: 2424833f/gitopsdocker:latest  # Imagen que subes a Docker Hub
           ports:
-            - containerPort: 80
+            - containerPort: 8080
+          livenessProbe:          # Health check para verificar si el contenedor está vivo
+            httpGet:
+              path: /             # Ruta a verificar ("/" por defecto)
+              port: 8080          # Puerto donde tu app escucha
+            initialDelaySeconds: 5  # Espera inicial antes del primer chequeo
+            periodSeconds: 10      # Intervalo entre chequeos
+          readinessProbe:         # Health check para verificar si está listo para recibir tráfico
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
