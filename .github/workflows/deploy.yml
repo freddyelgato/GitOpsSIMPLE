@@ -37,7 +37,7 @@ jobs:
 
       - name: Login to ArgoCD
         run: |
-          argocd login localhost:8080 --username admin --password ${{ secrets.ARGOCD_PASSWORD }} --insecure
+          argocd login 127.0.0.1:55514 --username admin --password ${{ secrets.ARGOCD_PASSWORD }} --insecure
 
       - name: Sync Application
         run: |
