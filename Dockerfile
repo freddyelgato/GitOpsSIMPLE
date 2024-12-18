@@ -19,5 +19,5 @@ RUN go build -o main main.go
 # Expose port 8080 so the container can accept connections on this port
 EXPOSE 8080
 
-# Set the default command to run when the container starts (execute the Go application)
+
 CMD [ "./main" ]
