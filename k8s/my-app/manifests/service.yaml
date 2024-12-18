@@ -10,4 +10,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-  type: LoadBalancer  # Puedes usar ClusterIP si no necesitas un balanceador de carga
+  type: LoadBalancer  
